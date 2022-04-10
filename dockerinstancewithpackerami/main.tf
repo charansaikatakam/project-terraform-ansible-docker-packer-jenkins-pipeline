@@ -1,5 +1,5 @@
 terraform {
-  required_version = "<=1.1.7"
+  required_version = "<=1.1.8"
   required_providers {
     aws = {
         source = "hashicorp/aws",
@@ -23,7 +23,7 @@ resource "aws_instance" "projectjenkinsinstance" {
     private_ip = "10.0.1.7"
     key_name = "AWS PRIVATE KEY"
     subnet_id = "subnet-09e4fb6c42c011a0b"
-    vpc_security_group_ids = [sg-0c5980ac2a88466c2]
+    vpc_security_group_ids = ["sg-0c5980ac2a88466c2"]
     tags = {
         Name = "dockerwithpackerami"
         Owner = "charansaikatakam"
