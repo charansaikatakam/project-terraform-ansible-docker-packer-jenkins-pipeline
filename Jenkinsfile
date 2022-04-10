@@ -13,11 +13,11 @@ pipeline {
             steps {
                 sh 'pwd'
                 sh 'ls -al'
-                sh 'cd /home/ec2-user/project-terraform-ansible-docker-packer-jenkins-pipeline/packeramiwithdocker'
+                sh 'cd packeramiwithdocker'
                 sh 'packer build packer.json 2>1 > output.txt'
                 sh 'echo \"output.txt\" | tail -2 | head -2 | cut -d : -f2 > ami.txt'
                 sh 'amigenerated=$(cat ami.txt)'
-                sh 'echo \"projectami = $amigenerated\" >> /home/ec2-user/project-terraform-ansible-docker-packer-jenkins-pipeline/dockerinstancewithpackerami/variables.tfvars'
+                sh 'echo \"projectami = $amigenerated\" >> /var/lib/jenkins/workspace/projectpipeline/dockerinstancewithpackerami/variables.tfvars'
             }
         }
     }
