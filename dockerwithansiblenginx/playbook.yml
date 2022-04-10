@@ -1,0 +1,19 @@
+---
+  - name: Play for docker nginx
+    hosts: localhost
+    gather_facts: true
+    vars:
+      localhostIP: "{{ ansible_facts['default_ipv4']['address']}}"
+      todaysdate: "{{ ansible_facts['date_time']['date']}}"
+      hostname: "{{ ansible_facts['hostname'] }}"
+    tasks:
+      - name: copy index.html to nginx
+        template: >
+          src=index.j2
+          dest=/var/www/html/index.nginx-debian.html
+          owner=root
+          group=root
+          mode=0644
+
+     # - name: nginx restart
+     #   command: systemctl restart nginx
