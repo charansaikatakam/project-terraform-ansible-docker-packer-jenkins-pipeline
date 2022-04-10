@@ -14,6 +14,8 @@ pipeline {
                 sh 'pwd'
                 sh 'ls -al'
                 sh 'cd packeramiwithdocker'
+                sh 'pwd'
+                sh 'ls -al'
                 sh 'packer build packer.json 2>1 > output.txt'
                 sh 'echo \"output.txt\" | tail -2 | head -2 | cut -d : -f2 > ami.txt'
                 sh 'echo ami.txt'
