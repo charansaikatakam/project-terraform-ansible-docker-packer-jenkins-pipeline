@@ -4,9 +4,7 @@
         "aws_access_key": "AKIAZERQ4QF5KUUX2EEO",
         "aws_secret_key": "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",
         "region": "us-east-1",
-        "source_ami": "ami-03e0b06f01d45a4eb",
-        "vpc_id": "vpc-0334639ac327b4b5c",
-        "subnet_id": "subnet-00d1a5600992eb0d0"
+        "source_ami": "ami-03e0b06f01d45a4eb"
     },
     "builders": [
         {
@@ -18,8 +16,6 @@
             "instance_type": "t2.micro",
             "ssh_username": "ec2-user",
             "ami_name": "myami-{{isotime | clean_resource_name}}",
-            "vpc_id": "{{user `vpc_id`}}",
-            "subnet_id": "{{user `subnet_id`}}",
             "tags": {
                 "Name": "myami-{{isotime | clean_resource_name}}"
             }
