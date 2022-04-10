@@ -5,7 +5,7 @@ pipeline {
         stage('clone the project repo')
             steps {
                 sh 'rm -rf project-terraform-ansible-docker-packer-jenkins-pipeline'
-                git clone git@github.com:charansaikatakam/project-terraform-ansible-docker-packer-jenkins-pipeline.git
+                sh 'git clone git@github.com:charansaikatakam/project-terraform-ansible-docker-packer-jenkins-pipeline.git'
             }
 
         stage('Packer build to generate the ami to be used in next stage')
