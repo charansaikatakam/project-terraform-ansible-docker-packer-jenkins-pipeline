@@ -1,0 +1,55 @@
+{
+    "_comment": "create an ami which has docker in it and just do it and give me the ami",
+    "variables": {
+        "aws_access_key": "AKIAZERQ4QF5KUUX2EEO",
+        "aws_secret_key": "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",
+        "region": "us-east-1",
+        "source_ami": "ami-03e0b06f01d45a4eb",
+        "vpc_id": "vpc-0334639ac327b4b5c",
+        "subnet_id": "subnet-00d1a5600992eb0d0"
+    },
+    "builders": [
+        {
+            "access_key": "{{user `aws_access_key`}}",
+            "secret_key": "{{user `aws_secret_key`}}",
+            "type": "amazon-ebs",
+            "region": "{{user `region`}}",
+            "source_ami": "{{user `source_ami`}}",
+            "instance_type": "t2.micro",
+            "ssh_username": "ec2-user",
+            "ami_name": "myami-{{isotime | clean_resource_name}}",
+            "vpc_id": "{{user `vpc_id`}}",
+            "subnet_id": "{{user `subnet_id`}}",
+            "tags": {
+                "Name": "myami-{{isotime | clean_resource_name}}"
+            }
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "sudo yum install -y docker",
+                "sleep 20",
+                "sudo systemctl start docker",
+                "sudo systemctl enable docker",
+                "sudo yum install -y git",
+                "sleep 20"
+            ]
+        },
+        {
+            "type": "file",
+            "source": "docker.service",
+            "destination": "/tmp/docker.service"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "sudo cp /tmp/docker.service /lib/systemd/system/docker.service",
+                "sudo usermod -a -G docker ec2-user",
+                "sudo systemctl daemon-reload",
+                "sudo service docker restart"
+            ]
+        }
+    ]
+}
