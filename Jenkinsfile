@@ -13,7 +13,7 @@ pipeline {
             steps {
                 sh 'pwd'
                 sh 'ls -al'
-                sh 'cd /var/lib/jenkins/workspace/projectpipeline/packeramiwithdocker'
+                sh 'cd /var/lib/jenkins/workspace/project/project-terraform-ansible-docker-packer-jenkins-pipeline.git/packeramiwithdocker'
                 sh 'pwd'
                 sh 'packer build packer.json 2>1 > output.txt'
                 sh 'echo \"output.txt\" | tail -2 | head -2 | cut -d : -f2 > ami.txt'
