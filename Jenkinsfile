@@ -1,3 +1,4 @@
+/* groovylint-disable LineLength */
 pipeline {
     agent any
     stages {
@@ -9,11 +10,13 @@ pipeline {
 
         stage('Packer build to generate the ami to be used in next stage')
             steps{
+                sh 'pwd'
+                sh 'ls -al'
                 sh 'cd /home/ec2-user/project-terraform-ansible-docker-packer-jenkins-pipeline/packeramiwithdocker'
                 sh 'packer build packer.json 2>1 > output.txt'
                 sh 'echo \"output.txt\" | tail -2 | head -2 | cut -d : -f2 > ami.txt'
                 sh 'amigenerated=$(cat ami.txt)'
-                sh 'echo projectami = $amigenerated'
+                sh 'echo \"projectami = $amigenerated\" >> /home/ec2-user/project-terraform-ansible-docker-packer-jenkins-pipeline/dockerinstancewithpackerami/variables.tfvars'
             }
     }
 }
