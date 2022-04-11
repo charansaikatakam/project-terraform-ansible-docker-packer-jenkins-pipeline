@@ -18,7 +18,9 @@ pipeline {
                     sh 'packer build packer.json 2>1 > output.txt'
                     sh 'cat output.txt | tail -2 | head -2 | cut -d : -f2 > ami.txt'
                     sh 'cat ami.txt'
-                    sh 'amigenerated=$(cat ami.txt)'
+                    script{
+                         def amigenerated = sh (script: "cat ami.txt") 
+                    }
                     sh 'echo projectami = \"$amigenerated\" >> /var/lib/jenkins/workspace/project/dockerinstancewithpackerami/variables.tfvars'
                 }
             }
