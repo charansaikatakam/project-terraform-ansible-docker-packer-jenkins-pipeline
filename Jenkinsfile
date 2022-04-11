@@ -16,10 +16,10 @@ pipeline {
                 dir('packeramiwithdocker') {
                     sh 'pwd'
                     sh 'packer build packer.json 2>1 > output.txt'
-                    sh 'echo \"output.txt\" | tail -2 | head -2 | cut -d : -f2 > ami.txt'
-                    sh 'echo ami.txt'
+                    sh 'cat output.txt | tail -2 | head -2 | cut -d : -f2 > ami.txt'
+                    sh 'cat ami.txt'
                     sh 'amigenerated=$(cat ami.txt)'
-                    sh 'echo \"projectami = $amigenerated\" >> /var/lib/jenkins/workspace/projectpipeline/dockerinstancewithpackerami/variables.tfvars'
+                    sh 'echo \"projectami = $amigenerated\" >> /var/lib/jenkins/workspace/project/dockerinstancewithpackerami/variables.tfvars'
                 }
             }
         }
