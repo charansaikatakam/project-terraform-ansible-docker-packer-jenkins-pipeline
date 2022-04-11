@@ -9,7 +9,7 @@ pipeline {
                 sh 'git clone git@github.com:charansaikatakam/project-terraform-ansible-docker-packer-jenkins-pipeline.git'
             }
         }
-        stage('Packer build to generate the ami to be used in next stage') {
+ /*       stage('Packer build to generate the ami to be used in next stage') {
             steps {
                 sh 'pwd'
                 sh 'ls -al'
@@ -18,9 +18,19 @@ pipeline {
                     sh 'packer build packer.json 2>1 > output.txt'
                     sh 'cat output.txt | tail -2 | head -2 | cut -d : -f2 > ami.txt'
                     sh 'cat ami.txt'
-                    script {
-                        def amigenerated = sh (script: 'cat ami.txt')
-                        echo "projectami = \"$amigenerated\""
+                }
+            }
+        } */
+
+        stage('created ami pushing to terraformcode') {
+            steps {
+                /* groovylint-disable-next-line DuplicateStringLiteral */
+                dir('packeramiwithdocker') {
+                    script{
+                        sh """
+                            amigenerated=$(cat ami.txt)
+                            echo "projectami = \"$amigenerated\"" >> /var/lib/jenkins/workspace/project/dockerinstancewithpackerami/variables.tfvars
+                        """
                     }
                 }
             }
