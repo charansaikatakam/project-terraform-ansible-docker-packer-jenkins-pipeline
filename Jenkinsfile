@@ -20,7 +20,7 @@ pipeline {
                     sh 'cat ami.txt'
                     script {
                         def amigenerated = sh (script: 'cat ami.txt')
-                        echo "projectami = \"$amigenerated\"" >> /var/lib/jenkins/workspace/project/dockerinstancewithpackerami/variables.tfvars
+                        echo "projectami = \"$amigenerated\""
                     }
                 }
             }
