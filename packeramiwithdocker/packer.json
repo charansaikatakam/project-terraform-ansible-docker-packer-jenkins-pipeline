@@ -12,6 +12,8 @@
             "secret_key": "{{user `aws_secret_key`}}",
             "type": "amazon-ebs",
             "region": "{{user `region`}}",
+            "vpc_id": "vpc-03d503354fc34b6d1",
+            "subnet_id": "subnet-003eccf03a81f80dd",
             "source_ami": "{{user `source_ami`}}",
             "instance_type": "t2.micro",
             "ssh_username": "ec2-user",
