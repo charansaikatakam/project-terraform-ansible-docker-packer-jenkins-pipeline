@@ -27,10 +27,12 @@ pipeline {
                 /* groovylint-disable-next-line DuplicateStringLiteral */
                 dir('packeramiwithdocker') {
                     script{
+                        sshagent(['ci-ssh']) {
                         sh """
                             amigenerated=$(cat ami.txt)
                             echo "projectami = \"$amigenerated\"" >> /var/lib/jenkins/workspace/project/dockerinstancewithpackerami/variables.tfvars
                         """
+                    }
                     }
                 }
             }
