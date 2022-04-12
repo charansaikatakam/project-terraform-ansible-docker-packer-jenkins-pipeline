@@ -36,5 +36,15 @@ pipeline {
                 }
             }
         }
+
+        stage('terraform apply') {
+            sh 'pwd'
+            dir('dockerinstancewithpackerami') {
+                sh 'ls -al'
+                sh 'terraform init'
+                sh 'sleep 10'
+                sh 'terraform apply --var-file variables.tfvars --auto-approve'
+            }
+        }
     }
 }
