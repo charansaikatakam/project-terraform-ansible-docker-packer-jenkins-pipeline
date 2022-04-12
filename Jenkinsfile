@@ -28,7 +28,7 @@ pipeline {
                 dir('packeramiwithdocker') {
                     script {
                         sh '''
-                            amigenerated=$(cat ami.txt)
+                            amigenerated=$(cat ami.txt | cut -d " " -f 2)
                             echo '$amigenerated'
                             echo projectami = '"'$amigenerated'"' >> /var/lib/jenkins/workspace/project/dockerinstancewithpackerami/variables.tfvars
                         '''
