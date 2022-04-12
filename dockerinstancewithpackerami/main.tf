@@ -22,8 +22,8 @@ resource "aws_instance" "projectjenkinsinstance" {
     instance_type = "t2.micro"
     private_ip = "10.0.1.7"
     key_name = "AWS PRIVATE KEY"
-    subnet_id = "subnet-09e4fb6c42c011a0b"
-    vpc_security_group_ids = ["sg-0c5980ac2a88466c2"]
+    subnet_id = "subnet-045e5dc016bb07df5"
+    vpc_security_group_ids = ["sg-082b484002e83a8b4"]
     tags = {
         Name = "dockerwithpackerami"
         Owner = "charansaikatakam"
