@@ -60,8 +60,8 @@ pipeline {
         }
         stage('deploy container in other instance') {
             steps {
-                sh 'docker -H tcp://10.0.1.6:2375 stop projectcontainer'
-                sh 'docker -H tcp://10.0.1.6:2375 run --rm -dit --name projectcontainer -p 80:80 charansaikatakam/project:v1'
+                sh 'docker -H tcp://10.0.1.7:2375 stop projectcontainer || true'
+                sh 'docker -H tcp://10.0.1.7:2375 run --rm -dit --name projectcontainer -p 80:80 charansaikatakam/project:v1'
             }
         }
     }
