@@ -26,7 +26,7 @@ pipeline {
             steps {
                 /* groovylint-disable-next-line DuplicateStringLiteral */
                 dir('packeramiwithdocker') {
-                    script{
+                    script {
                         sh '''
                             amigenerated=$(cat ami.txt)
                             echo '$amigenerated'
@@ -38,12 +38,14 @@ pipeline {
         }
 
         stage('terraform apply') {
-            sh 'pwd'
-            dir('dockerinstancewithpackerami') {
-                sh 'ls -al'
-                sh 'terraform init'
-                sh 'sleep 10'
-                sh 'terraform apply --var-file variables.tfvars --auto-approve'
+            steps {
+                sh 'pwd'
+                dir('dockerinstancewithpackerami') {
+                    sh 'ls -al'
+                    sh 'terraform init'
+                    sh 'sleep 10'
+                    sh 'terraform apply --var-file variables.tfvars --auto-approve'
+                }
             }
         }
     }
