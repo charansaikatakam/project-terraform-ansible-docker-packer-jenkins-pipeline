@@ -28,10 +28,10 @@ pipeline {
                 dir('packeramiwithdocker') {
                     script{
                         sshagent(['ci-ssh']) {
-                        sh """
+                        sh '''
                             amigenerated=$(cat ami.txt)
                             echo "projectami = \"$amigenerated\"" >> /var/lib/jenkins/workspace/project/dockerinstancewithpackerami/variables.tfvars
-                        """
+                        '''
                       }
                     }
                 }
