@@ -9,7 +9,7 @@ pipeline {
                 sh 'git clone git@github.com:charansaikatakam/project-terraform-ansible-docker-packer-jenkins-pipeline.git'
             }
         }
-        stage('Packer build to generate the ami to be used in next stage') {
+  /*      stage('Packer build to generate the ami to be used in next stage') {
             steps {
                 sh 'pwd'
                 sh 'ls -al'
@@ -20,7 +20,7 @@ pipeline {
                     sh 'cat ami.txt'
                 }
             }
-        }
+        }*/
 
         stage('created ami pushing to terraformcode') {
             steps {
