@@ -48,5 +48,14 @@ pipeline {
                 }
             }
         }
+
+        stage('docker image creation and pushing to docker hub') {
+            steps {
+                dir('dockerwithansiblenginx') {
+                    sh 'docker build -t charansaikatakam/project:v1'
+                    sh 'docker push charansaikatakam/project:v1'
+                }
+            }
+        }
     }
 }
