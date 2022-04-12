@@ -29,7 +29,7 @@ pipeline {
                     script{
                         sh '''
                             amigenerated=$(cat ami.txt)
-                            echo projectami = ""$amigenerated"" >> /var/lib/jenkins/workspace/project/dockerinstancewithpackerami/variables.tfvars
+                            echo projectami = \""$amigenerated"\" >> /var/lib/jenkins/workspace/project/dockerinstancewithpackerami/variables.tfvars
                         '''
                     }
                 }
