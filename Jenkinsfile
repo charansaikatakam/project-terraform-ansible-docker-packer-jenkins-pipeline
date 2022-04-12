@@ -53,8 +53,8 @@ pipeline {
             steps {
                 dir('dockerwithansiblenginx') {
                     sh 'ls -al'
-                    sh 'sudo docker build -t charansaikatakam/project:v1 .'
-                    sh 'sudo docker push charansaikatakam/project:v1'
+                    sh 'docker.build -t charansaikatakam/project:v1 .'
+                    sh 'docker push charansaikatakam/project:v1'
                 }
             }
         }
